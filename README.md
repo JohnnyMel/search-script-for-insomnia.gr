@@ -3,6 +3,5 @@
 
 #Πως να το τρέξετε
 το script έχει dependencies στα παρακάτω:
-
-• beautifulsoup4
+* beautifulsoup4
 * requests
