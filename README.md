@@ -5,3 +5,8 @@
 το script έχει dependencies στα παρακάτω:
 * beautifulsoup4
 * requests
+
+```bash
+sudo pip install beautifulsoup4
+sudo pip install requests
+```*
