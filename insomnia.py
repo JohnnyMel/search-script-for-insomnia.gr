@@ -7,12 +7,9 @@ sys.setdefaultencoding('utf8')
 
 import bs4
 import urllib2
-import re
 import os
 
-import os.path as pt
 import sys
-from time import sleep
 import requests
 import argparse
 
