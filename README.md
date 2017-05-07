@@ -1,7 +1,7 @@
-#script αναζήτησης αγγελιών για το insomnia.gr
+# script αναζήτησης αγγελιών για το insomnia.gr
 Με αυτό το script μπορείτε να ψάξετε αγγελίες στο site με κριτήρια όπως τίτλος και εύρος τιμών.
 
-#Dependencies
+# Dependencies
 Για να τρέξετε το script πρέπει να έχετε τα παρακάτω:
 * beautifulsoup4
 * requests
@@ -16,7 +16,7 @@ sudo pip install requests
 sudo apt-get install python-pip
 ```
 
-#Πως να το τρέξετε
+# Πως να το τρέξετε
 ```bash
 python insomnia.py [-h] [-f] [-r] url query pages
 ```
@@ -38,7 +38,7 @@ pages: σε πόσες σελίδες θα ψάξει (π.χ. 5)
 
 -r, --range: εύρος τιμών (π.χ. 50-200)
 
-#Παραδείγματα
+# Παραδείγματα
 
 1) Εύρεση των αγγελιών με τίτλο "LG G4" στην σελίδα με τις αγγελίες των LG (ψάχνει τις 10 πρώτες σελίδες):
 
