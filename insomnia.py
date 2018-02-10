@@ -26,41 +26,41 @@ def find_urls(page_url, search, rmFilter, priceRange):
     if priceRange is not '':
         pRange = priceRange.split("-")
             
-    tables = soup.findChildren('table')
-    table = tables[0]
-        
-    rows = table.findChildren('tr')
+    lists = soup.findChildren('li', class_="ipsDataItem   ")
+    
     count = 0
     
-    for row in rows:
-        columns = row.findChildren('td')
-        for column in columns:
-            link = column.find('a')
-            price = row.find_all("td", class_="short")
-            if link is not None:
-                title = link.get("title")
-                if title is not None:
-                    count = 0;
-                    for s in srch:
-                        if s.lower() in title.lower():
-                            count += 1
-                            if count == allMatched:
-                                if rmFilter is '!':
-                                    if '€' not in price[2].text:
-                                        break
+    for list in lists:
+        link = list.find('a', class_="ipsTruncate ipsTruncate_line")
+        price = list.find("strong", class_="ipsType_normal")
+        if link is not None:
+            title = link.text
+            if price is not None:
+                price = price.text
+            if title is not None:
+                count = 0;
+                for s in srch:
+                    if s.lower() in title.lower():
+                        count += 1
+                        if count == allMatched:
+                            if rmFilter is '!':
+                                if price is None:
+                                    break
                                 
-                                if len(pRange) > 1:
-                                    if '€' not in price[2].text:
-                                        break
-                                    plainPrice = price[2].text.split("€")
-                                    if int(plainPrice[1]) < int(pRange[0]) or int(plainPrice[1]) > int(pRange[1]): 
-                                        break
+                            if len(pRange) > 1:
+                                if price is None:
+                                    break
+                                plainPrice = price.split("€")
+                                plainPrice = plainPrice[0]
+                                plainPrice = plainPrice.replace(',','.')
+                                if float(plainPrice) < float(pRange[0]) or float(plainPrice) > float(pRange[1]): 
+                                    break
                                 
-                                print title
-                                print price[2].text
-                                print link.get("href") + "\n"
-            if count == allMatched:
-                break
+                            print title
+                            print price
+                            print link.get("href") + "\n"
+                    if count == allMatched:
+                        break
                 
 def main():
     parser = argparse.ArgumentParser()
@@ -73,7 +73,6 @@ def main():
     
     args = parser.parse_args()
     
-    sum = 0
     rmFilter = ' '
     priceRange = ''
     
@@ -85,8 +84,8 @@ def main():
     
     for i in range(int(args.pages)):
         print "page " + str(i+1) + " =====================================================\n" 
-        find_urls(args.url + "?st=" + str(sum), args.query, rmFilter, priceRange)
-        sum += 15
+        find_urls(args.url + "?page=" + str(i+1), args.query, rmFilter, priceRange)
+        
     
 
 main()
