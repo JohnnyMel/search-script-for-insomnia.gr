@@ -1,56 +1,56 @@
-# script αναζήτησης αγγελιών για το insomnia.gr
-Με αυτό το script μπορείτε να ψάξετε αγγελίες στο site με κριτήρια όπως τίτλος και εύρος τιμών.
+# A script for searching classfields on insomnia.gr
+With this script you can search for classfields on the website with criteria such as title and price range.
 
 # Dependencies
-Για να τρέξετε το script πρέπει να έχετε τα παρακάτω:
+To run the script you must have the following:
 * beautifulsoup4
 * requests
 
-Για να τα κατεβάσετε:
+To install them run:
 ```bash
 sudo pip install beautifulsoup4
 sudo pip install requests
 ```
-Αν δεν έχετε το pip (ubuntu):
+If you don't have pip run (ubuntu):
 ```bash
 sudo apt-get install python-pip
 ```
 
-# Πως να το τρέξετε
+# How to run the script:
 ```bash
 python insomnia.py [-h] [-f] [-r] url query pages
 ```
-Ό,τι είναι σε [] είναι προαιρετικό όρισμα.
+Arguments in [] are optional.
 
-Ορίσματα που απαιτούνται:
+Required arguments:
 
-url: το URL link της σελίδας με τις αγγελίες (π.χ.το URL των κινητών)
+url: the url of the classfields page (e.g. the smartphone url)
 
-query: τα κριτήρια αναζήτησης (π.χ. "smartphone model" μαζί με τα εισαγωγικά)
+query: the search criteria (e.g. "smartphone model" quotes included)
 
-pages: σε πόσες σελίδες θα ψάξει (π.χ. 5)
+pages: number of pages to search (e.g. 5)
 
-Προαιρετικά ορίσματα:
+Optional arguments:
 
--h, --help: μήνυμα βοήθειας
+-h, --help: help
 
--f, --filter: αφαιρεί τις αγγελίες που δεν έχουν τιμή (αυτές που γράφουν "επικοινωνία")
+-f, --filter: removes classfields with no price tag
 
--r, --range: εύρος τιμών (π.χ. 50-200)
+-r, --range: price range (e.g. 50-200)
 
-# Παραδείγματα
+# Examples
 
-1) Εύρεση των αγγελιών με τίτλο "LG G4" στην σελίδα με τις αγγελίες των LG (ψάχνει τις 10 πρώτες σελίδες):
+1) Search classfields with title "LG G6" in the LG page (shows 10 first pages):
 
-Σημείωση: Η αναζήτηση είναι case insensitive
+Note: Search is case insensitive
 ```bash
-python insomnia.py http://www.insomnia.gr/classifieds/mobile/lg/ "lg g4" 10
+python insomnia.py https://www.insomnia.gr/classifieds/category/52-lg/ "lg g6" 10
 ```
-2) Εύρεση των αγγελιών με τίτλο "LG G4" στην σελίδα με τις αγγελίες των LG (εμφανίζει μόνο αυτές που έχουν τιμή, δηλ. απαλοίφει αυτές που γράφουν "επικοινωνία"):
+2) Search classfields with title "LG G6" in the LG page (showing only classfields with price tag):
 ```bash
-python insomnia.py http://www.insomnia.gr/classifieds/mobile/lg/ "lg g4" 10 -f
+python insomnia.py https://www.insomnia.gr/classifieds/category/52-lg/ "lg g6" 10 -f
 ```
-3) Εύρεση των αγγελιών με τίτλο "galaxy s6" στην σελίδα με τις αγγελίες των Samsung ψάχνοντας τις 5 πρώτες σελίδες (με εύρος τιμών 100-300 ευρώ):
+3) Search classfields with title "LG G6" in the LG page (shows classfields in range of 200-400 in the first 5 pages):
 ```bash
-python insomnia.py http://www.insomnia.gr/classifieds/mobile/samsung/ "galaxy s6" 5 -r 100-300
+python insomnia.py https://www.insomnia.gr/classifieds/category/52-lg/ "lg g6" 5 -r 200-400
 ```
