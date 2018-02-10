@@ -1,4 +1,4 @@
-# A script for searching classfields on insomnia.gr
+# Search script for insomnia.gr
 With this script you can search for classfields on the website with criteria such as title and price range.
 
 # Dependencies
